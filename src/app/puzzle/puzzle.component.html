@@ -1,0 +1,32 @@
+<div class="container">
+  <h2 class="text-center">Integral Puzzle</h2>
+  <div>
+    <div class="form-group">
+      <div class="col-sm-3">
+        <input class="form-control" #name placeholder="Number" [(ngModel)]="value" />
+      </div>
+      <div class="col-sm-3">
+        <select class="form-control" #select [(ngModel)]="direction">
+          <option *ngFor="let item of list" [value]="item.id">{{item.name}}</option>
+      </select>
+      </div>
+      <div class="col-sm-3">
+        <select class="form-control" #select [(ngModel)]="method">
+            <option *ngFor="let item of methods" [value]="item.id">{{item.name}}</option>
+        </select>
+      </div>
+      <div class="col-sm-3">
+        <button class="btn" (click)="getSpiral(name.value)">Show</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <table class="table">
+          <tr *ngFor="let column of matrix; let $index=$index;">
+            <td *ngFor="let value of column" style="border: none;">{{(value>-1?value:'')}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
