@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit,NgModule  } from '@angular/core';
 
 @Component({
   templateUrl: './puzzle.component.html',
@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PuzzleComponent implements OnInit {
   matrix: any;
-  input: number = 0;
+  inputNumber: number = 0;
   list: any = [
     { id: 0, name: 'left' },
     { id: 1, name: 'right' }
@@ -30,7 +30,7 @@ export class PuzzleComponent implements OnInit {
   }
   getColumnValue(value) {
     value--;
-    if (value > this.input) {
+    if (value > this.inputNumber) {
       value = -1;
     }
     return value;
@@ -48,12 +48,12 @@ export class PuzzleComponent implements OnInit {
     }
     return p;
   }
-  getSpiral(input) {
+  getSpiral(inputNumber) {
     if (this.method == 1) {
-      this.printSpiralCase1(input);
+      this.printSpiralCase1(inputNumber);
     }
     else if (this.method == 2) {
-      this.printSpiralCase2(input);
+      this.printSpiralCase2(inputNumber);
     }
   }
   getValue(row: number, column: number) {
@@ -76,21 +76,21 @@ export class PuzzleComponent implements OnInit {
 
   // Logic 1 for printing Integer spiral
 
-  printSpiralCase1(input) {
+  printSpiralCase1(inputNumber) {
     this.matrix = [];
     let row: number = 0;
     let col: number = 0;
     let direction = "right";
-    this.input = input;
-    input = this.getMatrixCol(input);
-    let maxLength = input * input;
+    this.inputNumber = inputNumber;
+    inputNumber = this.getMatrixCol(inputNumber);
+    let maxLength = inputNumber * inputNumber;
     for (let i = maxLength; i > 0; i--) {
-      if (direction == "right" && (col > input - 1 || this.getValue(row, col) != 0)) {
+      if (direction == "right" && (col > inputNumber - 1 || this.getValue(row, col) != 0)) {
         direction = "down";
         col--;
         row++;
       }
-      if (direction == "down" && (row > input - 1 || this.getValue(row, col) != 0)) {
+      if (direction == "down" && (row > inputNumber - 1 || this.getValue(row, col) != 0)) {
         direction = "left";
         row--;
         col--;
@@ -131,11 +131,11 @@ export class PuzzleComponent implements OnInit {
 
   // Logic 2 for printing Integer spiral
 
-  printSpiralCase2(input) {
+  printSpiralCase2(inputNumber) {
     this.matrix = [];
-    this.input = input;
+    this.inputNumber = inputNumber;
 
-    let length = this.getMatrixCol(this.input);
+    let length = this.getMatrixCol(this.inputNumber);
     for (let i = 0; i < length; i++) {
       let col: Array<any> = [];
       for (let j = 0; j < length; j++) {
