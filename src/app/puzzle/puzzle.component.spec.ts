@@ -32,39 +32,38 @@ describe('PuzzleComponent', () => {
     it('should be able to return -1 if 6 is greater than 4', () => {
       expect(component.getColumnValue(6)).toBe(-1);
     });
-    it('should be able to return', () => {
+    it('should be able to return 4 if 5 is greater than 4', () => {
       expect(component.getColumnValue(5)).toBe(4);
-    });
-    it('should create', () => {
-      expect(component.getColumnValue(4)).toBe(3);
     });
   }
   )
   describe('Get Matrix Column', () => {
-    it('should return 3 if number is less than 8', () => {
+    it('should be able to return 3 if number is less than 8', () => {
       expect(component.getMatrixCol(7)).toBe(3);
     });
-    it('should return 5 if number is greater than 8 and less than 25', () => {
+    it('should be able to return 5 if number is greater than 8 and less than 25', () => {
       expect(component.getMatrixCol(9)).toBe(5);
     });
-    it('should return 7 if number is greater than 24 and less than 49', () => {
+    it('should be able to return 7 if number is greater than 24 and less than 49', () => {
       expect(component.getMatrixCol(25)).toBe(7);
     });
-    it('should return 11 if greater than 50', () => {
-      expect(component.getMatrixCol(50)).toBe(11);
+    it('should be able to return 11 if greater than 50', () => {
+      expect(component.getMatrixCol(51)).toBe(11);
     });
   }
   )
-  describe('Get Spiral', () => {
-    beforeEach(() => {
-      component.inputNumber = 1;
+  describe('Print spiral pattern case 1', () => {
+    it('should return an array having 3*3 matrix if number is less than 8', () => {
+      expect(component.printSpiralCase1(7)).toBeDefined;
     });
-    it('should return 3 if number is less than 8', () => {
-      expect(component.getMatrixCol(7)).toBe(3);
+    it('should return an array having 5*5 matrix if number is greater than 8 and less than 25', () => {
+      expect(component.printSpiralCase1(9)).toBeDefined;
     });
-    it('should return 5 if number is greater than 8 and less than 25', () => {
-      expect(component.getMatrixCol(9)).toBe(5);
+    it('should return an array having 7*7 matrix if number is greater than 24 and less than 49', () => {
+      expect(component.printSpiralCase1(25)).toBeDefined;
     });
-  }
-  )
+    it('should return an array having 11*11 matrix if number is greater than 49', () => {
+      expect(component.printSpiralCase1(50)).toBeDefined;
+    });
+  })
 });
