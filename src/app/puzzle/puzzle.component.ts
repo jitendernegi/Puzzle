@@ -1,4 +1,4 @@
-import { Component, OnInit,NgModule  } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 
 @Component({
   templateUrl: './puzzle.component.html',
@@ -127,6 +127,8 @@ export class PuzzleComponent implements OnInit {
         this.matrix[i].reverse();
       }
     }
+
+    return this.matrix;
   }
 
   // Logic 2 for printing Integer spiral
@@ -155,6 +157,8 @@ export class PuzzleComponent implements OnInit {
       }
       this.matrix.push(col);
     }
+    
+    return this.matrix;
   }
 }
 
