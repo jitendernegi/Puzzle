@@ -17,17 +17,18 @@ export class PuzzleComponent implements OnInit {
     { id: 2, name: 'Method 2' }
   ];
   direction = 0;
+  value=0;
   method: number = 1;
-
-  constructor() {
-  }
 
   ngOnInit() {
   }
 
+  // return minimun value between i and j
   getMinValue(i, j) {
     return i > j ? j : i;
   }
+
+  // replace value with -1 if greater than input number
   getColumnValue(value) {
     value--;
     if (value > this.inputNumber) {
@@ -35,6 +36,8 @@ export class PuzzleComponent implements OnInit {
     }
     return value;
   }
+
+  // getting rows and column from input number
   getMatrixCol(n) {
     let p;
     if (n <= 8) {
@@ -48,6 +51,8 @@ export class PuzzleComponent implements OnInit {
     }
     return p;
   }
+
+  // calling function depending on value selected from dropdown
   getSpiral(inputNumber) {
     if (this.method == 1) {
       this.printSpiralCase1(inputNumber);
@@ -56,6 +61,7 @@ export class PuzzleComponent implements OnInit {
       this.printSpiralCase2(inputNumber);
     }
   }
+
   getValue(row: number, column: number) {
     if (this.matrix[row]) {
       if (this.matrix[row][column]) {
@@ -64,6 +70,7 @@ export class PuzzleComponent implements OnInit {
     }
     return 0;
   }
+
   setValue(row: number, column: number, value: number) {
     value = this.getColumnValue(value);
     if (this.matrix[row]) {
@@ -74,8 +81,17 @@ export class PuzzleComponent implements OnInit {
     }
   }
 
-  // Logic 1 for printing Integer spiral
+  // allows user to enter only number
+  numberOnly(event: any) {
+    const pattern = /[0-9 ]/;
 
+    let input = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(input)) {
+      event.preventDefault();
+    }
+  }
+
+  // Logic 1 for printing Integer spiral
   printSpiralCase1(inputNumber) {
     this.matrix = [];
     let row: number = 0;
@@ -121,7 +137,6 @@ export class PuzzleComponent implements OnInit {
     }
 
     // If direction is Right
-
     if (this.direction == 1) {
       for (let i = 0; i < this.matrix.length; i++) {
         this.matrix[i].reverse();
@@ -132,7 +147,6 @@ export class PuzzleComponent implements OnInit {
   }
 
   // Logic 2 for printing Integer spiral
-
   printSpiralCase2(inputNumber) {
     this.matrix = [];
     this.inputNumber = inputNumber;
@@ -151,13 +165,12 @@ export class PuzzleComponent implements OnInit {
       }
 
       // If direction is Right
-
       if (this.direction == 1) {
         col.reverse();
       }
       this.matrix.push(col);
     }
-    
+
     return this.matrix;
   }
 }
